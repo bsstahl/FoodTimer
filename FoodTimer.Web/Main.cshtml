@@ -1,0 +1,14 @@
+﻿@inject AppState state
+
+<div id="search-and-results-area">
+    <TimeDisplay CurrentTime=state.CurrentCount />
+    <StartStop Action=state.StartStop />
+</div>
+
+@functions
+{
+protected override void OnInit()
+{
+    state.OnChange += StateHasChanged;
+}
+}

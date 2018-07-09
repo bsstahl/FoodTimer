@@ -1,0 +1,43 @@
+﻿<div class="col">
+
+    <!--
+    <div class="col pr-0">
+        <div class="form-control d-flex">
+            <div><i>✈</i>&nbsp;&nbsp;From:</div>
+            <input list="airports" placeholder="..." bind=criteria.FromAirport />
+        </div>
+    </div>
+    <div class="col px-2 py-1 align-self-end arrow">➝</div>
+
+    <div class="col pl-0">
+        <div class="form-control d-flex">
+            <div><i>✈</i>&nbsp;&nbsp;To:</div>
+            <input list="airports" placeholder="..." bind=criteria.ToAirport />
+        </div>
+    </div>
+    -->
+    <div>@CountAsTime()</div>
+    <div class="ml-auto">
+        <button onclick="OnPause" type="button" class="btn btn-danger px-5">
+            Start/Pause
+        </button>
+    </div>
+
+</div>
+
+@functions
+{
+    private int timerCount = 900;
+
+    public void OnPause()
+    {
+        timerCount--;
+    }
+
+    public string CountAsTime()
+    {
+        int min = Convert.ToInt32(Math.Floor(timerCount / 60.0));
+        int sec = Convert.ToInt32(Math.Floor(timerCount % 60.0));
+        return $"{min:00}:{sec:00}";
+    }
+}
