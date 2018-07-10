@@ -15,10 +15,20 @@ body {
     display: flex;
 }
 
-#search-and-results-area {
-    display: flex;
-    flex: auto;
-    flex-direction: column;
+.waiting {
+    background-color: white;
+}
+
+.eatNow {
+    background-color: forestgreen;
+}
+
+.pauseEating {
+    background-color: red;
+}
+
+.stopWhenSatisfied {
+    background-color: yellow;
 }
 
 .arrow {

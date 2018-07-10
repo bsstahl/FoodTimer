@@ -1,10 +1,21 @@
 ﻿<div class="col">
-    <button onclick=@(() => Action()) type="button" class="btn btn-danger px-5">
-        Start/Stop
+    <button onclick=@(() => Action()) type="button" class="btn btn-primary px-5">
+        @ButtonText()
     </button>
 </div>
 
 @functions
 {
     [Parameter] Func<Task> Action { get; set; }
+    [Parameter] bool IsCounting { get; set; }
+
+    string ButtonText()
+    {
+        if (IsCounting)
+            return "Pause";
+        else
+            return "Start";
+    }
 }
+
+

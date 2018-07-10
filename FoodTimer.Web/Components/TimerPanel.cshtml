@@ -1,0 +1,28 @@
+﻿<div class=@PanelStyle>
+    <div class="row">
+        <div class="col-xs-12">
+            <TimeDisplay CurrentTime=CurrentCount />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <StartStop Action=StartStopAction IsCounting=IsCounting />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <Reset Action=ResetAction />
+        </div>
+    </div>
+</div>
+
+@functions
+{
+    [Parameter] string PanelStyle { get; set; }
+    [Parameter] Func<Task> ResetAction { get; set; }
+    [Parameter] Func<Task> StartStopAction { get; set; }
+    [Parameter] bool IsCounting { get; set; }
+    [Parameter] int CurrentCount { get; set; }
+}
+
+

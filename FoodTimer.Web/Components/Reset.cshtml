@@ -1,0 +1,12 @@
+﻿<div class="col">
+    <button onclick=@(() => Action()) type="button" class="btn btn-primary px-5">
+        Reset
+    </button>
+</div>
+
+@functions
+{
+    [Parameter] Func<Task> Action { get; set; }
+}
+
+
