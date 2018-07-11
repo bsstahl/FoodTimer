@@ -1,7 +1,7 @@
 ﻿@inject AppState state
 
 <div class="container">
-    <TimerPanel PanelStyle=state.BackgroundStyle ResetAction=state.Reset StartStopAction=state.StartStop IsCounting=state.IsCounting CurrentCount=state.CurrentCount />
+    <TimerPanel ResetAction=state.Reset StartStopAction=state.StartStop IsCounting=state.IsCounting CurrentCount=state.CurrentCount PanelStyle=@state.PanelStyle />
 </div>
 
 @functions

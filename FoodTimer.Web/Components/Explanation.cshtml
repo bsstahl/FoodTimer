@@ -1,0 +1,27 @@
+﻿<div>
+    <label class="timeRemaining">
+        @GetExplanation(this.IsCounting, this.CurrentCount)
+    </label>
+</div>
+
+@functions
+{
+    [Parameter] bool IsCounting { get; set; }
+    [Parameter] int CurrentCount { get; set; }
+
+    public string GetExplanation(bool isCounting, int count)
+    {
+        string result = string.Empty;
+        if (isCounting)
+            if (count <= 0)
+                result = "Stop eating when you are satisified";
+            else if (count <= 600)
+                result = "Continue eating slowly and savoring your food";
+            else if (count <= 900)
+                result = "Take a break";
+            else
+                result = "Eat slowly and be present";
+
+        return result;
+    }
+}

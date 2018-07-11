@@ -13,6 +13,8 @@ namespace FoodTimer.Web.Services
         public bool IsCounting { get; private set; }
         public int CurrentCount { get; private set; }
 
+        public string PanelStyle { get; private set; }
+
 
         private System.Timers.Timer _timer;
 
@@ -24,12 +26,41 @@ namespace FoodTimer.Web.Services
         {
             this.StartingTimeSeconds = 1500;
             this.CurrentCount = this.StartingTimeSeconds;
+            this.PanelStyle = GetBackgroundStyle();
 
             _timer = new System.Timers.Timer(1000);
             _timer.Elapsed += _timer_Elapsed;
         }
 
-        public string BackgroundStyle()
+        public async Task Reset()
+        {
+            await UpdateCounter(this.StartingTimeSeconds);
+        }
+
+        public async Task StartStop()
+        {
+            this.IsCounting = !this.IsCounting;
+            if (this.IsCounting)
+                _timer.Start();
+            else
+                _timer.Stop();
+            this.PanelStyle = GetBackgroundStyle();
+            await Task.Run(() => NotifyStateChanged());
+        }
+
+        private async void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            await UpdateCounter(this.CurrentCount - 1);
+        }
+
+        private async Task UpdateCounter(int newCount)
+        {
+            this.CurrentCount = newCount;
+            this.PanelStyle = GetBackgroundStyle();
+            await Task.Run(() => NotifyStateChanged());
+        }
+
+        private string GetBackgroundStyle()
         {
             string result = "waiting";
             if (this.IsCounting)
@@ -43,29 +74,6 @@ namespace FoodTimer.Web.Services
                     result = "eatNow";
 
             return result;
-        }
-
-
-        private void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            this.CurrentCount--;
-            NotifyStateChanged();
-        }
-
-        public async Task Reset()
-        {
-            this.CurrentCount = this.StartingTimeSeconds;
-            await Task.Run(() => NotifyStateChanged());
-        }
-
-        public async Task StartStop()
-        {
-            this.IsCounting = !this.IsCounting;
-            if (this.IsCounting)
-                _timer.Start();
-            else
-                _timer.Stop();
-            await Task.Run(() => NotifyStateChanged());
         }
 
         private void NotifyStateChanged() => OnChange?.Invoke();

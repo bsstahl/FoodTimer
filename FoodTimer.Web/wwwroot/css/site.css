@@ -1,5 +1,4 @@
-﻿/* Generated from site.scss. Do not modify directly. */
-/*
+﻿/*
     The SCSS structure here is not well organised. There's a lot of unnecessary repetition,
     and no use of variables to factor out common or easily-changeable values.
     
@@ -15,10 +14,28 @@ body {
     display: flex;
 }
 
-#search-and-results-area {
-    display: flex;
-    flex: auto;
-    flex-direction: column;
+.waiting {
+    background-color: white;
+    color: black;
+    width: 100%;
+}
+
+.eatNow {
+    background-color: forestgreen;
+    color: white;
+    width: 100%;
+}
+
+.pauseEating {
+    background-color: red;
+    color: white;
+    width: 100%;
+}
+
+.stopWhenSatisfied {
+    background-color: yellow;
+    color: black;
+    width: 100%;
 }
 
 .arrow {

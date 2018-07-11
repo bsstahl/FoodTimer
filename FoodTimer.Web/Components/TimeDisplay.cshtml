@@ -1,5 +1,5 @@
-﻿<div class="col">
-    <label>
+﻿<div>
+    <label class="timeRemaining">
         @CountAsTime(this.CurrentTime)
     </label>
 </div>
@@ -12,6 +12,6 @@
     {
         int min = Convert.ToInt32(Math.Floor(count / 60.0));
         int sec = Convert.ToInt32(Math.Floor(count % 60.0));
-        return $"{min:00}:{sec:00}";
+        return $"{min:0}:{sec:00}";
     }
 }
